@@ -13,8 +13,8 @@ import java.io.IOException;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
-public class crawlingTest {
-    private final static Logger log = LoggerFactory.getLogger(crawlingTest.class);
+public class CrawlingTest {
+    private final static Logger log = LoggerFactory.getLogger(CrawlingTest.class);
 
     @Test
     public void 크롤링_테스트() throws IOException {

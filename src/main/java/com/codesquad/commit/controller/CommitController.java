@@ -41,4 +41,6 @@ public class CommitController {
         log.debug("userId : {} , time : {}", userId, time);
         commitService.setAlarm(userId, time);
     }
+
+
 }

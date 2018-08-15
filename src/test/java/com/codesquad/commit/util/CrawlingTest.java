@@ -17,8 +17,14 @@ public class CrawlingTest {
     @Test
     public void 크롤링_테스트() throws IOException {
         LocalDate localDate = LocalDate.now(ZoneId.of("Asia/Seoul"));
-        log.debug("count : {}" ,Crawling.getCount("Hue9010", "2018-08-09"));
-        assertThat(Crawling.getCount("Hue9010", "2018-08-09"), is(1));
+        log.debug("count : {}" ,Crawling.getCount("Hue9010", "2018-05-07"));
+        assertThat(Crawling.getCount("Hue9010", "2018-05-07"), is(1));
+    }
+
+    @Test
+    public void 전체_크롤링_개선() throws IOException {
+        Crawling crawling = new Crawling();
+        crawling.setElement("hue9010");
     }
 
 }

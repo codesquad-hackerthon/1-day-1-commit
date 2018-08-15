@@ -21,16 +21,16 @@ public class CommitTest {
 
     @Test
     public void 업데이트_값_0() {
-        Commit commit = Commit.builder().isTodayCommit(false).totalCount(0).updateDate("0000-00-00").build();
-        Commit updatedCommit = Commit.builder().isTodayCommit(false).totalCount(0).updateDate("0000-00-00").build();
+        Commit commit = Commit.builder().todayCommit(0).count(0).updateDate("0000-00-00").build();
+        Commit updatedCommit = Commit.builder().todayCommit(0).count(0).updateDate("0000-00-00").build();
         updatedCommit.update(0, date);
         assertThat(updatedCommit, is(commit));
     }
 
     @Test
     public void 업데이트_값_1() {
-        Commit commit = Commit.builder().isTodayCommit(false).totalCount(0).updateDate("0000-00-00").build();
-        Commit updatedCommit = Commit.builder().isTodayCommit(false).totalCount(0).updateDate(date).build();
+        Commit commit = Commit.builder().todayCommit(0).count(0).updateDate("0000-00-00").build();
+        Commit updatedCommit = Commit.builder().todayCommit(0).count(0).updateDate(date).build();
         updatedCommit.update(1, date);
         assertNotEquals(updatedCommit, is(commit));
         assertThat(updatedCommit.getCount(), is(1));

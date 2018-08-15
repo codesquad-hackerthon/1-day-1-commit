@@ -34,14 +34,11 @@ public class CommitService {
         // 체크를 날짜로 보지 말고 여부로 볼까?
         if (commit.isFirst()) {
             init(userId, commit, localDate);
-
         }
 
-        // 처음인 경우 한달 치를 업데이트
-//        if(commit.isChecked(localDate.toString())){
-        if (commit.isTodayCommit(date)) {
-            return commit;
-        }
+//        if (commit.isTodayCommit(date)) {
+//            return commit;
+//        }
         // 크롤링 해서 데이터를 최신화
         int count = Crawling.getCount(userId, date);
         commit.update(count, date);
@@ -53,21 +50,31 @@ public class CommitService {
 
     private void init(String userId, Commit commit, LocalDate localDate) throws IOException {
         // 한달 치를 만들어 준다...
+        Crawling crawling = new Crawling();
+        crawling.setElement(userId);
         LocalDate beforelocalDate = localDate;
         for (int i = 10; i > 0; i--) {
+
             beforelocalDate = localDate.plusDays(-i);
             String beforeDate = beforelocalDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString();
-            int beforeCount = Crawling.getCount(userId, beforeDate);
-            // 크롤러에 엘리먼트 자체를 넣어 놓은 다음에 거기서 가져 오게 하는 방식으로 가야 할 것 같다.
+            int beforeCount = crawling.getInitCount(beforeDate);
+
             log.debug("beforelocalDate : {}", beforelocalDate.toString());
             log.debug("beforeCount : {}", beforeCount);
+
             commit.update(beforeCount, beforeDate);
         }
         commit.changeFirstCommit();
     }
 
-    public void setAlarm(String userId, String time) {
-        Commit commit = commitRepository.findById(userId).get();
+    public void setAlarm(String userId, String time) throws IOException {
+        Commit commit;
+        if (!commitRepository.findById(userId).isPresent()) {
+            commit = getCommit(userId);
+        } else {
+            commit = commitRepository.findById(userId).get();
+        }
+
         commit.setAlarmTime(time);
         commitRepository.save(commit);
     }

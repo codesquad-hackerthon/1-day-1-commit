@@ -27,19 +27,19 @@
 
     <main class="mdl-layout__content">
       <div class="main-content">
-        {{commit.userId}}
-
         <div class="notice">
+            <div class="notice-item id">
+                <em><span class="text">{{commit.userId}}</span></em>님,
+            </div>
+            
           <div class="notice-item today">
-            오늘 커밋         {{#if commit.todayCommit}}
-            잘
-            {{else}}
-            안
-            {{/if}} 했어요!
+            오늘 커밋
+            <em>{{#if commit.todayCommit}}잘{{else}}아직 안{{/if}}</em>
+            했어요!
           </div>
 
           <div class="notice-item continue">
-            연속 {{commit.count}}일 커밋했어요!
+            연속 <em>{{commit.count}}일</em> 커밋했어요!
           </div>
         </div>
 
@@ -52,6 +52,8 @@
             <header class="mdl-dialog__title">알람 시간</header>
 
             <form class="form" action="">
+              <input type="hidden" name="alarmTime" value="{{commit.alarmTime}}">
+
               <div class="mdl-dialog__content">
                 매일
                 <select name="am-pm" id="">

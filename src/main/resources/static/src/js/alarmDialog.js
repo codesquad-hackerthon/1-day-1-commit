@@ -18,6 +18,7 @@ const alarmDialog = {
       dialogPolyfill.registerDialog(dialog);
     }
     this.userId = userId;
+    this.renderTime();
     this.registerEvents();
   },
   registerEvents() {
@@ -30,6 +31,27 @@ const alarmDialog = {
   },
   close() {
     this.contentBox.close();
+  },
+  renderTime() {
+    const alarmTimeValueArr = this.form.querySelector('[name="alarmTime"]').value.split('-');
+    let hour = Number(alarmTimeValueArr[0]);
+    let minute = Number(alarmTimeValueArr[1]);
+    const isPM = (hour > 12)? true : false;
+    hour = (isPM)? hour % 12 : hour;
+    hour = (hour < 10)? '0' + hour : hour;
+    minute = (minute < 10)? '0' + minute : minute;
+
+    const ampmElem = this.form.querySelector('[name="am-pm"]');
+    const hourOption = this.form.querySelector(`[name="hour"] [value="${hour}"]`);
+    const minuteOption = this.form.querySelector(`[name="minute"] [value="${minute}"]`);
+
+    if (isPM) {
+      ampmElem.querySelector('[value="pm"]').setAttribute('selected', 'selected');
+    } else {
+      ampmElem.querySelector('[value="am"]').setAttribute('selected', 'selected');
+    }
+    hourOption.setAttribute('selected', 'selected');
+    minuteOption.setAttribute('selected', 'selected');
   },
   saveTime(e) {
     e.preventDefault();

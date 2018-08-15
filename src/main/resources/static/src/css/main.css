@@ -31,8 +31,11 @@ h1, h2, h3, h4, h5, h6 {
 
 /* content */
 .main-content {
-  margin: 0 auto; padding: 40px 16px 100px;
-  width: 900px; max-width: 100%;
+  margin: 0 auto; 
+  /* padding: 40px 16px 100px; */
+  padding: 4vh 16px 8vh;
+  width: 900px; 
+  max-width: 100%;
   text-align: center;
 }
 
@@ -67,7 +70,8 @@ h1, h2, h3, h4, h5, h6 {
 .dialog-box select {
   border: none;
   background: #ddd;
-  font-family: inherit; font-size: inherit;
+  font-family: inherit;
+  font-size: inherit;
 }
 .dialog-box .mdl-dialog__actions {
   flex-direction: unset;
@@ -93,13 +97,47 @@ h1, h2, h3, h4, h5, h6 {
 
 /* notice */
 .notice {
-  margin: 12vh 0;
+  margin: 10vh 0;
 }
 .notice-item {
-  margin: 6vh 0; font-size: 2rem;
+  margin: 5vh 0;
+  font-size: 2rem;
+}
+.notice-item em {
+  color: #000 !important;
+  font-style: initial;
+  text-decoration: underline;
+}
+.notice-item.id {
+  margin-bottom: 8vh;
+}
+.notice-item.id em {
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+  font-style: initial;
+  text-decoration: none;
+}
+.notice-item.id em::before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: -7px;
+  right: 0px;
+  bottom: -5px;
+  width: 112%;
+  height: 13px;
+  border-radius: 2px;
+  background-color: #ddd;
+}
+.notice-item.id .text {
+  position: relative;
 }
 
 /* footer */
+.mdl-mega-footer {
+  padding: 2vh 40px;
+}
 .mdl-mega-footer--link-list {
   margin-left: 16px;
 }
@@ -119,8 +157,8 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
   }
   .mdl-mega-footer--bottom-section .mdl-mega-footer--link-list li {
-    float: none; display: inline-block;
+    float: none; 
+    display: inline-block;
     margin-left: 0;
   }
-  
 }

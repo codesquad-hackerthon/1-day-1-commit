@@ -87,7 +87,18 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /**
- * Page
+ * Page - login
+ */
+.mdl-layout__content.login {
+  text-align: center;
+}
+.mdl-layout__content.login .mdl-textfield__label:after {
+  background-color: #fcb8ab !important;
+}
+
+
+/**
+ * Page - main
  */
 
 /* dialog btn */

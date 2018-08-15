@@ -25,6 +25,29 @@
     </header>
     <!-- header -->
 
+    {{#if commit.userId}}
+
+    <main class="mdl-layout__content login">
+        <div class="main-content">
+            <form id="login-form" class="form" action="">
+            <div class="notice">
+                <div class="notice-item">
+                당신의 Github ID 입력!
+                </div>
+                <div class="notice-item">
+                <div class="mdl-textfield mdl-js-textfield">
+                    <input type="text" name="userId" class="mdl-textfield__input" value="">
+                    <label class="mdl-textfield__label" for="sample1">Github ID</label>
+                </div>
+                </div>
+            </div>
+            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect save">고고!</button>
+            </form>
+        </div>
+    </main>
+    
+    {{else}}
+
     <main class="mdl-layout__content">
       <div class="main-content">
         <div class="notice">
@@ -99,6 +122,7 @@
       </div><!-- // .main-content -->
     </main>
 
+    {{/if}}
 
     <!-- footer -->
     <footer class="mdl-mega-footer">

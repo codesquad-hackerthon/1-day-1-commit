@@ -1,0 +1,126 @@
+/**
+ * Base 
+ */
+
+body {
+  font-family: 'Do Hyeon', sans-serif;
+  font-size: 18px;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Do Hyeon', sans-serif !important;
+}
+
+
+/**
+ * Layout
+ */
+
+.mdl-layout__header,
+.mdl-layout__content,
+.mdl-mega-footer {
+  min-width: 200px;
+  overflow-x: scroll;
+}
+
+/* header */
+.mdl-layout__header {
+  background-color: #2E2E2E;
+  text-align: center;
+}
+.mdl-layout__header h1 { flex-grow: 1; }
+
+/* content */
+.main-content {
+  margin: 0 auto; padding: 40px 16px 100px;
+  width: 900px; max-width: 100%;
+  text-align: center;
+}
+
+/* footer */
+.mdl-mega-footer--bottom-section {
+  margin-left: auto;
+  margin-right: auto;
+  width: 220px;
+}
+
+
+/**
+ * Template Custom
+ */
+
+/* button */
+.mdl-button {
+  font-family: inherit;
+}
+
+/* dialog */
+.dialog-box .md-dialog {
+  min-width: 280px;
+}
+.dialog-box .mdl-dialog__title {
+  margin-bottom: 10px;
+}
+.dialog-box .mdl-dialog__content {
+  line-height: 1.8;
+  font-size: 18px;
+}
+.dialog-box select {
+  border: none;
+  background: #ddd;
+  font-family: inherit; font-size: inherit;
+}
+.dialog-box .mdl-dialog__actions {
+  flex-direction: unset;
+  justify-content: center;
+}
+.dialog-box .mdl-button {
+  margin: 0 5px;
+}
+.dialog-box .save {
+  background-color: #fcb8ab;
+  color: #442c2e;
+}
+
+
+/**
+ * Page
+ */
+
+/* dialog btn */
+#alarm-dialog .opener {
+  font-size: inherit;
+}
+
+/* notice */
+.notice {
+  margin: 12vh 0;
+}
+.notice-item {
+  margin: 6vh 0; font-size: 2rem;
+}
+
+/* footer */
+.mdl-mega-footer--link-list {
+  margin-left: 16px;
+}
+
+
+/**
+ * media query
+ */
+
+@media screen and (max-width:900px) {
+  .main-content { width: auto; }
+  .mdl-mega-footer--bottom-section .mdl-logo {
+    text-align: center;
+  }
+  .mdl-mega-footer--link-list {
+    margin-left: 16px;
+    text-align: center;
+  }
+  .mdl-mega-footer--bottom-section .mdl-mega-footer--link-list li {
+    float: none; display: inline-block;
+    margin-left: 0;
+  }
+  
+}

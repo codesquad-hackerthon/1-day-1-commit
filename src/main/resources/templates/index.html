@@ -1,10 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <title>일일커밋</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="src/css/lib/material.css">
+  <link rel="stylesheet" href="src/css/lib/material-style.css">
+  <link rel="stylesheet" href="src/css/main.css">
 </head>
-<body>
-    hihihi
+
+<body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <!-- header -->
+    <header class="mdl-layout__header mdl-layout__header--scroll">
+      <div class="mdl-layout__header-row"></div>
+      <div class="mdl-layout__header-row">
+        <h1>일일커밋</h1>
+      </div>
+      <div class="mdl-layout__header-row"></div>
+    </header>
+    <!-- header -->
+
+    <main class="mdl-layout__content">
+      <div class="main-content">
+        {{userId}}
+        {{count}}
+        {{#if todayCommit}}
+        잘
+        {{else}}
+        안
+        {{/if}}
+
+        <div class="notice">
+          <div class="notice-item today">
+            오늘 커밋 {잘} 했어요!
+          </div>
+
+          <div class="notice-item continue">
+            연속 30일 커밋했어요!
+          </div>
+        </div>
+
+        <div id="alarm-dialog" class="dialog-box">
+          <button type="button" class="opener mdl-button mdl-js-button mdl-button--raised">
+            설정
+          </button>
+
+          <dialog class="content-box mdl-dialog">
+            <header class="mdl-dialog__title">알람 시간</header>
+
+            <form class="form" action="">
+              <div class="mdl-dialog__content">
+                매일
+                <select name="am-pm" id="">
+                  <option value="am">AM</option>
+                  <option value="pm">PM</option>
+                </select>
+                <select name="hour" id="">
+                  <option value="01">01</option>
+                  <option value="02">02</option>
+                  <option value="03">03</option>
+                  <option value="04">04</option>
+                  <option value="05">05</option>
+                  <option value="06">06</option>
+                  <option value="07">07</option>
+                  <option value="08">08</option>
+                  <option value="09">09</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                </select>시
+                <select name="minute" id="">
+                  <option value="01">01</option>
+                  <option value="02">02</option>
+                  <option value="03">03</option>
+                  <option value="04">04</option>
+                  <option value="05">05</option>
+                  <option value="06">06</option>
+                  <option value="07">07</option>
+                  <option value="08">08</option>
+                  <option value="09">09</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                </select>
+                분에
+                <br>커밋 안 하면 알람 해 줄게요!
+              </div>
+  
+              <div class="mdl-dialog__actions">
+                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect save">저장</button>
+                <button type="button" class="mdl-button mdl-js-button mdl-button--raised close">닫기</button>
+              </div>
+            </form>
+
+          </dialog>
+        </div>
+      
+      </div><!-- // .main-content -->
+    </main>
+
+
+    <!-- footer -->
+    <footer class="mdl-mega-footer">
+        <div class="mdl-mega-footer--bottom-section">
+          <div class="mdl-logo">
+            만든 사람들
+          </div>
+          <ul class="mdl-mega-footer--link-list">
+            <li><a href="#">Hue</a></li>
+            <li><a href="#">Eric</a></li>
+            <li><a href="#">Lumi</a></li>
+          </ul>
+        </div>
+      </footer>
+      <!-- // footer -->
+  
+  </div>
+
+  <script src="src/js/lib/material.js"></script>  
+  <script type="module" src="src/js/app.js"></script>
 </body>
 </html>

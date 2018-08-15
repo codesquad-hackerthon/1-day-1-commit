@@ -33,7 +33,10 @@ const alarmDialog = {
     this.contentBox.close();
   },
   renderTime() {
-    const alarmTimeValueArr = this.form.querySelector('[name="alarmTime"]').value.split('-');
+    const alarmTimeValue = this.form.querySelector('[name="alarmTime"]').value;
+    if (!alarmTimeValue) { return; }
+
+    const alarmTimeValueArr = alarmTimeValue.split('-');
     let hour = Number(alarmTimeValueArr[0]);
     let minute = Number(alarmTimeValueArr[1]);
     const isPM = (hour > 12)? true : false;

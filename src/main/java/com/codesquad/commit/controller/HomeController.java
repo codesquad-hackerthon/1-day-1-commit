@@ -23,10 +23,13 @@ public class HomeController {
 
         Commit commit = null;
         try {
-            commit = commitService.getCommit(userId);
-            model.addAttribute("commit", commit);
-            return "index";
+            if (userId != null) {
+                commit = commitService.getCommit(userId);
+                model.addAttribute("commit", commit);
+                return "index";
+            }
         } catch (IOException e) {
+            model.addAttribute("noId", true);
         }
         return "index";
     }

@@ -1,7 +1,7 @@
 package com.codesquad.commit.repository;
 
-import org.springframework.stereotype.Repository;
+import com.codesquad.commit.domain.Commit;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public class CommitRepository {
+public interface CommitRepository extends JpaRepository <Commit, String>{
 }

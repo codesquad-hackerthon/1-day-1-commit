@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
@@ -23,7 +22,7 @@ public class CommitService {
 
     public Commit getCommit(String userId) throws IOException {
         Commit commit;
-        if(!commitRepository.findById(userId).isPresent()){
+        if (!commitRepository.findById(userId).isPresent()) {
             commit = new Commit(userId);
         } else {
             commit = commitRepository.findById(userId).get();
@@ -34,17 +33,8 @@ public class CommitService {
         // TODO 이거 할 필요 없이 커밋 여부로 안되어 있으면 재확인??
         // 체크를 날짜로 보지 말고 여부로 볼까?
         if (commit.isFirst()) {
-            // 한달 치를 만들어 준다...
-            LocalDate beforelocalDate = localDate;
-            for (int i = 10; i > 0; i--) {
-                beforelocalDate = localDate.plusDays(-i);
-                String beforeDate = beforelocalDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString();
-                int beforeCount = Crawling.getCount(userId, beforeDate);
-                log.debug("beforelocalDate : {}", beforelocalDate.toString());
-                log.debug("beforeCount : {}", beforeCount);
-                commit.update(beforeCount, beforeDate);
-            }
-            commit.changeFirstCommit();
+            init(userId, commit, localDate);
+
         }
 
         // 처음인 경우 한달 치를 업데이트
@@ -59,6 +49,21 @@ public class CommitService {
 
         commitRepository.save(commit);
         return commit;
+    }
+
+    private void init(String userId, Commit commit, LocalDate localDate) throws IOException {
+        // 한달 치를 만들어 준다...
+        LocalDate beforelocalDate = localDate;
+        for (int i = 10; i > 0; i--) {
+            beforelocalDate = localDate.plusDays(-i);
+            String beforeDate = beforelocalDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString();
+            int beforeCount = Crawling.getCount(userId, beforeDate);
+            // 크롤러에 엘리먼트 자체를 넣어 놓은 다음에 거기서 가져 오게 하는 방식으로 가야 할 것 같다.
+            log.debug("beforelocalDate : {}", beforelocalDate.toString());
+            log.debug("beforeCount : {}", beforeCount);
+            commit.update(beforeCount, beforeDate);
+        }
+        commit.changeFirstCommit();
     }
 
     public void setAlarm(String userId, String time) {

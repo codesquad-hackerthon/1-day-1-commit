@@ -29,7 +29,7 @@ public class Commit {
     @Column
     private String updateDate;
 
-    public Commit(String userId){
+    public Commit(String userId) {
         this.userId = userId;
         this.count = 0;
         // 알림 시간은 어떻게 할까 다시 얘기 해보자
@@ -45,10 +45,19 @@ public class Commit {
         return todayCommit != 0;
     }
 
-    public void update(int count, String date) {
-        todayCommit = count;
-        if (count != 0 && !date.equals(updateDate)) {
+    public void update(int todayCommitCount, String date) {
+        todayCommit = todayCommitCount;
+        if (todayCommitCount != 0 && !date.equals(updateDate)) {
             this.count++;
+            this.todayCommit = todayCommitCount;
+            updateDate = date;
+        }
+        if (todayCommitCount == 0 && !date.equals(updateDate)) {
+            this.count = 0;
+            updateDate = date;
+        }
+        if (todayCommitCount != 0 && date.equals(updateDate)) {
+            this.todayCommit = todayCommitCount;
             updateDate = date;
         }
     }

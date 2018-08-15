@@ -28,14 +28,14 @@ public class CommitService {
             commit = commitRepository.findById(userId).get();
         }
         LocalDate localDate = LocalDate.now(ZoneId.of("Asia/Seoul"));
-        String date = localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString();
+        String date = localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
         if (commit.isFirst()) {
             init(userId, commit, localDate);
+        } else {
+            int count = Crawling.getCount(userId, date);
+            commit.update(count, date);
         }
-
-        int count = Crawling.getCount(userId, date);
-        commit.update(count, date);
 
         commitRepository.save(commit);
         return commit;
@@ -46,10 +46,10 @@ public class CommitService {
         Crawling crawling = new Crawling();
         crawling.setElement(userId);
         LocalDate beforelocalDate = localDate;
-        for (int i = 10; i > 0; i--) {
+        for (int i = 10; i >= 0; i--) {
 
             beforelocalDate = localDate.plusDays(-i);
-            String beforeDate = beforelocalDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString();
+            String beforeDate = beforelocalDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             int beforeCount = crawling.getInitCount(beforeDate);
 
             log.debug("beforelocalDate : {}", beforelocalDate.toString());

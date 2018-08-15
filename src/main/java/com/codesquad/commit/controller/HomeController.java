@@ -20,7 +20,6 @@ public class HomeController {
 
     @GetMapping("/commits")
     public String home(String userId, Model model) {
-        log.debug("userId : {}", userId);
 
         Commit commit = null;
         try {

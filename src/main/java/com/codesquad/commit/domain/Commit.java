@@ -18,12 +18,12 @@ public class Commit {
     @Column
     private String userId;
     @Column
-    private int totalCount;
-    private int alarmTime;
+    private int count;
+    private String alarmTime;
     //    @Column
 //    private String todayCommits;
     @Column
-    private boolean isTodayCommit;
+    private int todayCommit;
     @Column
     private boolean isFirst;
     @Column
@@ -31,24 +31,24 @@ public class Commit {
 
     public Commit(String userId){
         this.userId = userId;
-        this.totalCount = 0;
+        this.count = 0;
         // 알림 시간은 어떻게 할까 다시 얘기 해보자
-        this.isTodayCommit = false;
+        this.todayCommit = 0;
         this.isFirst = true;
         this.updateDate = "0000-00-00";
     }
 
     public boolean isTodayCommit(String date) {
         if (!date.equals(updateDate)) {
-            isTodayCommit = false;
+            todayCommit = 0;
         }
-        return isTodayCommit;
+        return todayCommit != 0;
     }
 
     public void update(int count, String date) {
+        todayCommit = count;
         if (count != 0 && !date.equals(updateDate)) {
-            totalCount++;
-            isTodayCommit = true;
+            this.count++;
             updateDate = date;
         }
     }

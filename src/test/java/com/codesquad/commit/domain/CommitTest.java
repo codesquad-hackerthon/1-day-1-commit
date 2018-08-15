@@ -33,7 +33,7 @@ public class CommitTest {
         Commit updatedCommit = Commit.builder().isTodayCommit(false).totalCount(0).updateDate(date).build();
         updatedCommit.update(1, date);
         assertNotEquals(updatedCommit, is(commit));
-        assertThat(updatedCommit.getTotalCount(), is(1));
+        assertThat(updatedCommit.getCount(), is(1));
     }
 
 }

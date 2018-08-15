@@ -40,4 +40,5 @@ public class Crawling {
         Element element = document.select("rect[data-date=" + date + "]").first();
         String count = element.attr("data-count");
         return Integer.parseInt(count);
-    }}
+    }
+}

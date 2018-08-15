@@ -30,19 +30,12 @@ public class CommitService {
         LocalDate localDate = LocalDate.now(ZoneId.of("Asia/Seoul"));
         String date = localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString();
 
-        // TODO 이거 할 필요 없이 커밋 여부로 안되어 있으면 재확인??
-        // 체크를 날짜로 보지 말고 여부로 볼까?
         if (commit.isFirst()) {
             init(userId, commit, localDate);
         }
 
-//        if (commit.isTodayCommit(date)) {
-//            return commit;
-//        }
-        // 크롤링 해서 데이터를 최신화
         int count = Crawling.getCount(userId, date);
         commit.update(count, date);
-        // TODO 오늘 count 받은 걸로 업데이트 하고 그걸 가지고 커밋 여부와 전체 카운트에 대한 업데이트
 
         commitRepository.save(commit);
         return commit;

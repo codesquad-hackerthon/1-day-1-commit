@@ -20,8 +20,6 @@ public class Commit {
     @Column
     private int count;
     private String alarmTime;
-    //    @Column
-//    private String todayCommits;
     @Column
     private int todayCommit;
     @Column
@@ -32,7 +30,6 @@ public class Commit {
     public Commit(String userId) {
         this.userId = userId;
         this.count = 0;
-        // 알림 시간은 어떻게 할까 다시 얘기 해보자
         this.todayCommit = 0;
         this.isFirst = true;
         this.updateDate = "0000-00-00";

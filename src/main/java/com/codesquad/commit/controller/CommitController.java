@@ -34,7 +34,7 @@ public class CommitController {
     }
 
     @PostMapping("/alarm")
-    public void setAlarm(@RequestBody Map<String , String> param) throws IOException {
+    public void setAlarm(@RequestBody Map<String, String> param) throws IOException {
         log.debug("param : {}", param.toString());
         String userId = param.get("userId");
         String time = param.get("time");
